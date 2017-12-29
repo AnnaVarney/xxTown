@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class PlayerCollider : MonoBehaviour {
 
     private Dictionary<string, Collider2D> items;
+    public Animator anim;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        anim = transform.GetComponentInParent<Animator>();
+    }
+    // Use this for initialization
+    void Start () {
         items = new Dictionary<string, Collider2D>();
 	}
 	
@@ -26,6 +30,7 @@ public class PlayerCollider : MonoBehaviour {
                     GameObject.Find("HitText").GetComponent<Text>().text = GameObject.Find("HitText").GetComponent<Text>().text +  "你获得了" + tempItem.name +" x1\n";
                     items.Remove(temp.Value.gameObject.name);
                     Destroy(temp.Value.gameObject);
+                    anim.SetTrigger("pick");
                     break;
                 }
 
