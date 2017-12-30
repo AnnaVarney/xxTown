@@ -7,6 +7,7 @@ public class PlayerCollider : MonoBehaviour {
 
     private Dictionary<string, Collider2D> items;
     public Animator anim;
+    public float itemdestroytime = 1f;
 
     private void Awake() {
         anim = transform.GetComponentInParent<Animator>();
@@ -29,7 +30,7 @@ public class PlayerCollider : MonoBehaviour {
                     GameObject.Find("Knapsack").transform.Find("Grids1").GetComponent<KnapsackManager>().pickItem(tempItem);
                     GameObject.Find("HitText").GetComponent<Text>().text = GameObject.Find("HitText").GetComponent<Text>().text +  "你获得了" + tempItem.name +" x1\n";
                     items.Remove(temp.Value.gameObject.name);
-                    Destroy(temp.Value.gameObject);
+                    Destroy(temp.Value.gameObject,itemdestroytime);
                     anim.SetTrigger("pick");
                     break;
                 }

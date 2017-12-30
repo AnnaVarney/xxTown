@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour {
     bool ifFindPlayer = false;
     Transform target = null;
     public float speed = 1.0f;
-    private Animator animator;
+    public Animator animator;
 	// Use this for initialization
 	void Start () {
-        animator = GetComponent<Animator>();
+        
 	}
 	
 	// Update is called once per frame
@@ -43,5 +43,9 @@ public class Enemy : MonoBehaviour {
             target = null;
             animator.SetBool("chase", false);
         }
+    }
+    
+    void born() {
+        animator.Play("tree_born");
     }
 }
